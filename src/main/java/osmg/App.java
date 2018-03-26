@@ -22,8 +22,10 @@ public static void main(String[] args) {
 	AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(App.class);
 
 	strings = applicationContext.getBean("strings", Strings.class);
-
 	System.out.println(strings.getApplicationName() + " starting ...");
+
+	// create the main window instance
+	osmg main = applicationContext.getBean("osmg", osmg.class);
 }
 
 }
