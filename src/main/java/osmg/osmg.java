@@ -2,6 +2,10 @@ package osmg;
 
 import javax.swing.JFrame;
 
+/**
+ * The "main" class of the application, holds all of the objects that are used to play the game.
+ */
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +16,7 @@ public class osmg extends JFrame {
 
 private static final long serialVersionUID = 1L;
 
-/** holds ... wait for it ... strings */
+/** holds ... wait for it ... strings (see Strings class for details) */
 private Strings strings;
 
 /**
