@@ -11,18 +11,18 @@ import org.springframework.context.annotation.Configuration;
  */
 
 @Configuration
-public class Strings {
+public class AppStrings {
 
 /** handle for an instance of this singleton bean */
-private static Strings strings = null;
+private static AppStrings strings = null;
 
 /**
  * @return the singleton instance of this bean
  */
-@Bean(name = "strings")
-public static Strings getStrings() {
+@Bean(name = "appStrings")
+public static AppStrings getStrings() {
 	if (strings == null)
-		strings = new Strings();
+		strings = new AppStrings();
 	return strings;
 }
 

@@ -4,7 +4,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import osmg.beans.Strings;
+import osmg.beans.AppStrings;
 
 /**
  * Class used to start up the Spring container, and make the application runnable.
@@ -17,19 +17,26 @@ import osmg.beans.Strings;
 public class App {
 
 /**
+ * instead of suppressing the "applicationContext is never closed" warning, I have made the field a private static field
+ * (vs a variable defined in the main() function)
+ */
+private static AnnotationConfigApplicationContext applicationContext;
+
+/**
  * @param args
  *            ignored
  */
 public static void main(String[] args) {
 	// get the application context (aka "start Spring container")
-	AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(App.class);
+	if (applicationContext == null)
+		applicationContext = new AnnotationConfigApplicationContext(App.class);
 
 	// get the strings bean, use it to write out a "starting" message with the app's name
-	Strings strings = applicationContext.getBean("strings", Strings.class);
+	AppStrings strings = applicationContext.getBean("appStrings", AppStrings.class);
 	System.out.println(strings.getApplicationName() + " starting ...");
 
 	// create the main window instance
-	osmg main = applicationContext.getBean("osmg", osmg.class);
+	applicationContext.getBean("osmg", osmg.class);
 }
 
 }
