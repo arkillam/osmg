@@ -26,7 +26,8 @@ private AppStrings appStrings;
  * @param appStrings
  *            see Strings class for details
  */
-public osmg(@Autowired AppStrings appStrings) {
+@Autowired
+public osmg(AppStrings appStrings) {
 	super();
 	this.appStrings = appStrings;
 
