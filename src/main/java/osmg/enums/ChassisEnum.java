@@ -8,16 +8,16 @@ package osmg.enums;
 @SuppressWarnings("unused")
 public enum ChassisEnum {
 
-	A1_LIGHT_ECONOMY("Light w/ Economy Engine", 10, 50, 1, true, 5, 8),
-	A2_LIGHT("Light", 11, 50, 1, true, 6, 9),
-	A3_LIGHT_UPGRADED("Light w/ Upgraded Engine", 12, 50, 1, true, 8, 12),
-	B1_MEDIUM_ECONOMY("Medium w/ Economy Engine", 17, 75, 2, true, 4, 6),
-	B2_MEDIUM("Medium", 18, 75, 2, true, 5, 8),
-	B3_MEDIUM_UPGRADED("Medium w/ Upgraded Engine", 19, 75, 2, true, 6, 9),
-	C1_HEAVY("Heavy", 25, 100, 3, false, 4, 6),
-	C2_HEAVY_UPGRADED("Heavy w/ Upgraded Engine", 26, 100, 3, false, 5, 8),
-	D1_SUPER_HEAVY("Super Heavy", 32, 120, 4, false, 3, 5),
-	D2_SUPER_HEAVY_UPGRADED("Super Heavy w/ Upgraded Engine", 34, 120, 4, false, 5, 8);
+	A1_LIGHT_ECONOMY(ChassisSizeEnum.LIGHT, "Light w/ Economy Engine", 10, 50, 1, true, 5, 8),
+	A2_LIGHT(ChassisSizeEnum.LIGHT, "Light", 11, 50, 1, true, 6, 9),
+	A3_LIGHT_UPGRADED(ChassisSizeEnum.LIGHT, "Light w/ Upgraded Engine", 12, 50, 1, true, 8, 12),
+	B1_MEDIUM_ECONOMY(ChassisSizeEnum.MEDIUM, "Medium w/ Economy Engine", 17, 75, 2, true, 4, 6),
+	B2_MEDIUM(ChassisSizeEnum.MEDIUM, "Medium", 18, 75, 2, true, 5, 8),
+	B3_MEDIUM_UPGRADED(ChassisSizeEnum.MEDIUM, "Medium w/ Upgraded Engine", 19, 75, 2, true, 6, 9),
+	C1_HEAVY(ChassisSizeEnum.HEAVY, "Heavy", 25, 100, 3, false, 4, 6),
+	C2_HEAVY_UPGRADED(ChassisSizeEnum.HEAVY, "Heavy w/ Upgraded Engine", 26, 100, 3, false, 5, 8),
+	D1_SUPER_HEAVY(ChassisSizeEnum.SUPERHEAVY, "Super Heavy", 32, 120, 4, false, 3, 5),
+	D2_SUPER_HEAVY_UPGRADED(ChassisSizeEnum.SUPERHEAVY, "Super Heavy w/ Upgraded Engine", 34, 120, 4, false, 5, 8);
 
 	/** the build point cost for the chassis itself */
 	private final int buildPoints;
@@ -28,13 +28,18 @@ public enum ChassisEnum {
 	 */
 	private final int maxArmour;
 
-	/** the chassis can have, at most, this many large weapons (plus all the small ones the player wants) */
+	/**
+	 * the chassis can have, at most, this many large weapons (plus all the small ones the player wants)
+	 */
 	private final int maxLargeWeapons;
 
 	private final String name;
 
 	/** the maximum number of squares this chassis can run in one round */
 	private final int runSpeed;
+
+	/** the chassis size */
+	private final ChassisSizeEnum size;
 
 	/** if true, this chassis can fly via jets */
 	private final boolean vtolCapable;
@@ -59,8 +64,9 @@ public enum ChassisEnum {
 	 * @param runSpeed
 	 *            the maximum number of squares this chassis can run in one round
 	 */
-	private ChassisEnum(String name, int buildPoints, int maxArmour, int maxLargeWeapons, boolean vtolCapable,
-			int walkSpeed, int runSpeed) {
+	private ChassisEnum(ChassisSizeEnum size, String name, int buildPoints, int maxArmour, int maxLargeWeapons,
+			boolean vtolCapable, int walkSpeed, int runSpeed) {
+		this.size = size;
 		this.name = name;
 		this.buildPoints = buildPoints;
 		this.maxArmour = maxArmour;
@@ -88,6 +94,10 @@ public enum ChassisEnum {
 
 	public int getRunSpeed() {
 		return runSpeed;
+	}
+
+	public ChassisSizeEnum getSize() {
+		return size;
 	}
 
 	public int getWalkSpeed() {
