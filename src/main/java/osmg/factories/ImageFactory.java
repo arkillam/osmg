@@ -134,6 +134,9 @@ private BufferedImage loadImage(String name, boolean makeTransparent) {
 	}
 }
 
+/** caches image filters */
+private Map<Color, ImageFilter> cachedFilters = new HashMap<>();
+
 /**
  * Makes a specified color transparent in the submitted image.
  * 
@@ -146,20 +149,25 @@ private BufferedImage loadImage(String name, boolean makeTransparent) {
  */
 
 private BufferedImage makeColorTransparent(BufferedImage image, final Color color) {
-	ImageFilter filter = new RGBImageFilter() {
-	// the color we are looking for... Alpha bits are set to opaque
-	public int markerRGB = color.getRGB() | 0xFF000000;
 
-	public final int filterRGB(int x, int y, int rgb) {
-		if ((rgb | 0xFF000000) == markerRGB) {
-			// Mark the alpha bits as zero - transparent
-			return 0x00FFFFFF & rgb;
-		} else {
-			// nothing to do
-			return rgb;
+	if (!cachedFilters.containsKey(color)) {
+		cachedFilters.put(color, new RGBImageFilter() {
+		// the color we are looking for... Alpha bits are set to opaque
+		public int markerRGB = color.getRGB() | 0xFF000000;
+
+		public final int filterRGB(int x, int y, int rgb) {
+			if ((rgb | 0xFF000000) == markerRGB) {
+				// Mark the alpha bits as zero - transparent
+				return 0x00FFFFFF & rgb;
+			} else {
+				// nothing to do
+				return rgb;
+			}
 		}
+		});
 	}
-	};
+
+	ImageFilter filter = cachedFilters.get(color);
 
 	ImageProducer ip = new FilteredImageSource(image.getSource(), filter);
 
