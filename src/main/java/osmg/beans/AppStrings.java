@@ -30,7 +30,7 @@ public static AppStrings getStrings() {
  * @return the application's name and version
  */
 public final String getApplicationName() {
-	return "Old School Mech Game 0.1";
+	return "Old School Mecha Game 0.1";
 }
 
 }

@@ -6,10 +6,10 @@ import osmg.enums.ChassisEnum;
 import osmg.enums.WeaponEnum;
 
 /**
- * Represents a mech in the game.
+ * Represents a mecha in the game.
  */
 
-public class Mech {
+public class Mecha {
 
 private int armour = 0;
 
@@ -24,9 +24,9 @@ private String name;
 private List<WeaponEnum> weapons = null;
 
 /**
- * Creates an undefined mech.
+ * Creates an undefined mecha.
  */
-public Mech() {
+public Mecha() {
 }
 
 public int getArmour() {

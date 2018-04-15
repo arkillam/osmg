@@ -1,4 +1,4 @@
-Old School Mech Game
+Old School Mecha Game
 
 A computer game written using rules written by Stuart Robertson, with his most gracious permission.
 
