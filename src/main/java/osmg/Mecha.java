@@ -29,6 +29,9 @@ private int imageId;
 /** the name of the individual mecha NOT its design (something like "Red One", not "Sprinter Light Mecha") */
 private String name;
 
+/** if true, has VTOL - can jump short distances */
+private boolean vtol = false;
+
 private List<WeaponEnum> weapons = null;
 
 /**
@@ -69,6 +72,10 @@ public List<WeaponEnum> getWeapons() {
 	return weapons;
 }
 
+public boolean isVtol() {
+	return vtol;
+}
+
 public void setArmour(int armour) {
 	this.armour = armour;
 }
@@ -95,6 +102,10 @@ public void setImageId(int imageId) {
 
 public void setName(String name) {
 	this.name = name;
+}
+
+public void setVtol(boolean vtol) {
+	this.vtol = vtol;
 }
 
 public void setWeapons(List<WeaponEnum> weapons) {
