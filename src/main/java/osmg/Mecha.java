@@ -15,10 +15,18 @@ private int armour = 0;
 
 private ChassisEnum chassis = null;
 
+/** a description of the design (e.g. "A lightweight design designed for long-range support.") */
 private String description;
+
+/** the name of the mecha design (e.g. "Sprinter Light Mecha") */
+private String designName;
 
 private int heatSinks = 0;
 
+/** mecha images are identified by their chassis and a unique value; this is the unique value */
+private int imageId;
+
+/** the name of the individual mecha NOT its design (something like "Red One", not "Sprinter Light Mecha") */
 private String name;
 
 private List<WeaponEnum> weapons = null;
@@ -41,8 +49,16 @@ public String getDescription() {
 	return description;
 }
 
+public String getDesignName() {
+	return designName;
+}
+
 public int getHeatSinks() {
 	return heatSinks;
+}
+
+public int getImageId() {
+	return imageId;
 }
 
 public String getName() {
@@ -65,8 +81,16 @@ public void setDescription(String description) {
 	this.description = description;
 }
 
+public void setDesignName(String designName) {
+	this.designName = designName;
+}
+
 public void setHeatSinks(int heatSinks) {
 	this.heatSinks = heatSinks;
+}
+
+public void setImageId(int imageId) {
+	this.imageId = imageId;
 }
 
 public void setName(String name) {
