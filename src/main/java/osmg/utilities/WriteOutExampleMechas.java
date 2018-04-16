@@ -34,6 +34,7 @@ public static void main(String[] args) {
 		mecha.setVtol(true);
 		mecha.addWeapon(WeaponEnum.MISSILE_LARGE);
 		mecha.addWeapon(WeaponEnum.MISSILE_LARGE);
+		mecha.setBuildPointCost(mecha.calculateBuildPointCost());
 		mapper.writeValue(new File(pathToExamples + "Hoplite.json"), mecha);
 
 	} catch (Exception e) {

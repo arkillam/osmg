@@ -15,6 +15,9 @@ public class Mecha {
 
 private int armour = 0;
 
+/** the build point cost of a shiny new mecha; should be calculated and set during the design phase */
+private int buildPointCost = 0;
+
 private ChassisEnum chassis = null;
 
 /** a description of the design (e.g. "A lightweight design designed for long-range support.") */
@@ -67,8 +70,38 @@ public void addWeapon(WeaponEnum weapon) {
 	weapons.add(weapon);
 }
 
+/**
+ * Intended for the design phase - not to be used on damaged mechas, as their results will be less due to lost items.
+ * 
+ * @return the build point cost for the mecha in its current form
+ */
+public int calculateBuildPointCost() {
+	// start with the chassis base cost (this will also throw a null error if chassis not set :)
+	int total = chassis.getBuildPoints();
+
+	// one point for every five points of armour
+	total += armour / 5;
+
+	// one point for every five heat sinks
+	total += heatSinks / 5;
+
+	// VTOL 1 point
+	if (vtol)
+		total++;
+
+	if (weapons != null) {
+		total += weapons.stream().mapToInt(w -> w.getBuildPoints()).sum();
+	}
+
+	return total;
+}
+
 public int getArmour() {
 	return armour;
+}
+
+public int getBuildPointCost() {
+	return buildPointCost;
 }
 
 public ChassisEnum getChassis() {
@@ -105,6 +138,10 @@ public boolean isVtol() {
 
 public void setArmour(int armour) {
 	this.armour = armour;
+}
+
+public void setBuildPointCost(int buildPointCost) {
+	this.buildPointCost = buildPointCost;
 }
 
 public void setChassis(ChassisEnum chassis) {
