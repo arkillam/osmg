@@ -27,6 +27,7 @@ public static void main(String[] args) {
 
 		mecha = new Mecha();
 		mecha.setDesignName("Hoplite Medium Fire Support Mecha");
+		mecha.setImageId(2);
 		mecha.setChassis(ChassisEnum.B1_MEDIUM_ECONOMY);
 		mecha.setArmour(50);
 		mecha.setHeatSinks(20);
@@ -34,6 +35,7 @@ public static void main(String[] args) {
 		mecha.addWeapon(WeaponEnum.MISSILE_LARGE);
 		mecha.addWeapon(WeaponEnum.MISSILE_LARGE);
 		mapper.writeValue(new File(pathToExamples + "Hoplite.json"), mecha);
+
 	} catch (Exception e) {
 		e.printStackTrace();
 		System.exit(1);
