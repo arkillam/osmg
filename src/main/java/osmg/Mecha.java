@@ -1,6 +1,8 @@
 package osmg;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import osmg.enums.ChassisEnum;
 import osmg.enums.WeaponEnum;
@@ -38,6 +40,31 @@ private List<WeaponEnum> weapons = null;
  * Creates an undefined mecha.
  */
 public Mecha() {
+}
+
+/**
+ * Adds a weapon to the mecha;
+ * 
+ * @param weapon
+ *            the weapon to add
+ */
+public void addWeapon(WeaponEnum weapon) {
+	if (chassis == null)
+		throw new RuntimeException("cannot add weapons before specifying a chassis");
+
+	Objects.requireNonNull(weapon);
+
+	if (weapons == null)
+		weapons = new ArrayList<>();
+
+	// make sure the large weapon limit has not been passed
+	if (weapons.size() > 0) {
+		long largeCount = weapons.stream().filter(w -> w.isLarge()).count();
+		if (largeCount >= chassis.getMaxLargeWeapons())
+			throw new RuntimeException("cannot add another large weapon to this chassis");
+	}
+
+	weapons.add(weapon);
 }
 
 public int getArmour() {
